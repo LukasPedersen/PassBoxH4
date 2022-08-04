@@ -10,8 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContext<PassBoxContext>(pbc => pbc.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = PassBoxDB; Trusted_Connection = True; "));
+
+//Dependency injection
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordService, PasswordService>();
+builder.Services.AddScoped<ISafeHandler, SafeHandler>();
 
 
 var app = builder.Build();
