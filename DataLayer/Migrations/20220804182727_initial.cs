@@ -32,6 +32,7 @@ namespace DataLayer.Migrations
                     Website = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Pass = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Key = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

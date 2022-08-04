@@ -69,7 +69,17 @@ namespace ServiceLayer
 
         public string GetCurrentUsername()
         {
-            return CurrentUser.Username;
+            if (CurrentUser != null)
+                return CurrentUser.Username;
+            else 
+                return "";
+        }
+        public User GetCurrentUser()
+        {
+            if (CurrentUser != null)
+                return CurrentUser;
+            else
+                throw new ArgumentNullException();
         }
 
         /// <summary>
@@ -78,7 +88,11 @@ namespace ServiceLayer
         /// <returns></returns>
         public bool Logout()
         {
-            throw new NotImplementedException();
+            CurrentUser = null;
+            if (CurrentUser == null)
+                return true;
+            else 
+                return false;
         }
 
         /// <summary>
@@ -94,7 +108,5 @@ namespace ServiceLayer
             else
                 return true;
         }
-
-        
     }
 }

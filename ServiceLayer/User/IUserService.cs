@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,8 @@ namespace ServiceLayer
 
         public string GetUserSalt(string username);
         public string GetCurrentUsername();
+
+        public User GetCurrentUser();
 
         public bool Logout();
 

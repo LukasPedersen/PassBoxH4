@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ServiceLayer
 {
     public class PasswordService : IPasswordService
@@ -20,9 +21,17 @@ namespace ServiceLayer
         /// <summary>
         /// 
         /// </summary>
-        public void AddWebsite()
+        public void AddWebsite(string website, string username, string password, string key, User user)
         {
-
+            _PassBoxContext.Passwords.Add(new Password
+            {
+                Website = website,
+                Username = username,
+                Pass = password,
+                Key = key,
+                User = user
+            });
+            _PassBoxContext.SaveChanges();
         }
 
         /// <summary>
@@ -44,9 +53,9 @@ namespace ServiceLayer
         /// <summary>
         /// 
         /// </summary>
-        public List<Password> GetAllPasswords()
+        public List<Password> GetAllPasswords(int userID)
         {
-            return _PassBoxContext.Passwords.ToList();
+            return _PassBoxContext.Passwords.Where(p => p.User.Id == userID).ToList();
         }
 
         /// <summary>
@@ -56,6 +65,11 @@ namespace ServiceLayer
         public Password GetPassword(string website)
         {
             return _PassBoxContext.Passwords.Where(p => p.Website == website).First();
+        }
+
+        public string GetKey(string website)
+        {
+            return _PassBoxContext.Passwords.Where(p => p.Website == website).First().Key;
         }
     }
 }

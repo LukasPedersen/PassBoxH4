@@ -14,7 +14,7 @@ namespace ServiceLayer
         /// <summary>
         /// 
         /// </summary>
-        public void AddWebsite();
+        public void AddWebsite(string website, string username, string password, string key, User user);
 
         /// <summary>
         /// 
@@ -26,9 +26,11 @@ namespace ServiceLayer
         /// </summary>
         public void DeleteWebsite();
 
-        public List<Password> GetAllPasswords();
+        public List<Password> GetAllPasswords(int userID);
 
         public Password GetPassword(string website);
+
+        public string GetKey(string website);
 
         #endregion
     }
