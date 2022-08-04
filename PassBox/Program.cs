@@ -2,6 +2,7 @@ using DataLayer;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
+using ServiceLayer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,12 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContext<PassBoxContext>(pbc => pbc.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = PassBoxDB; Trusted_Connection = True; "));
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPasswordService, PasswordService>();
+
 
 var app = builder.Build();
-PassBoxContext context = app.Services.GetRequiredService<PassBoxContext>();
 
-context.Database.EnsureDeleted();
-context.Database.EnsureCreated();
+
+
+
+//PassBoxContext context = app.Services.GetRequiredService<PassBoxContext>();
+
+//context.Database.EnsureDeleted();
+//context.Database.EnsureCreated();
 
 
 

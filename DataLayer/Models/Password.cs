@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Models
 {
-    public class Box
+    public class Password
     {
         public int Id { get; set; }
 
         [Required]
-        public int Website { get; set; }
+        public string Website { get; set; }
 
         [Required]
-        public int Username { get; set; }
+        public string Username { get; set; }
 
         [Required]
-        public int Password { get; set; }
+        public string Pass { get; set; }
 
 
         //Navigation

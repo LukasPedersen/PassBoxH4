@@ -17,6 +17,6 @@ namespace DataLayer.Models
         [Required]
         public string Password { get; set; }
 
-        public List<Box> UserBox { get; set; }
+        public List<Password> Passwords { get; set; }
     }
 }

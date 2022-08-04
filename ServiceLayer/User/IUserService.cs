@@ -15,5 +15,9 @@ namespace ServiceLayer
         public void DeleteUser();
 
         public bool Login();
+
+        public bool Logout();
+
+        public bool CheckIfLoggedIn();
     }
 }

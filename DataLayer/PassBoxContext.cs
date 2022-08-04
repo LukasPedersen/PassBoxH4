@@ -18,7 +18,7 @@ namespace DataLayer
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Box> Boxs { get; set; }
+        public DbSet<Password> Passwords { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,7 +27,18 @@ namespace DataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                Username = "Lukas",
+                Password = "Test"
+            });
 
+            modelBuilder.Entity<Password>().HasData(new Password
+            {
+                Website = "Test site.com",
+                Username = "bob",
+                Pass = "Test",
+            }); ;
         }
     }
 }
