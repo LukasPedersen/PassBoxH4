@@ -23,21 +23,21 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Boxs",
+                name: "Passwords",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Website = table.Column<int>(type: "int", nullable: false),
-                    Username = table.Column<int>(type: "int", nullable: false),
-                    Password = table.Column<int>(type: "int", nullable: false),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Pass = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Boxs", x => x.Id);
+                    table.PrimaryKey("PK_Passwords", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Boxs_Users_UserId",
+                        name: "FK_Passwords_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -45,15 +45,15 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Boxs_UserId",
-                table: "Boxs",
+                name: "IX_Passwords_UserId",
+                table: "Passwords",
                 column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Boxs");
+                name: "Passwords");
 
             migrationBuilder.DropTable(
                 name: "Users");

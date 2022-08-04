@@ -21,7 +21,7 @@ namespace DataLayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("DataLayer.Models.Box", b =>
+            modelBuilder.Entity("DataLayer.Models.Password", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -29,23 +29,26 @@ namespace DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Password")
-                        .HasColumnType("int");
+                    b.Property<string>("Pass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Username")
-                        .HasColumnType("int");
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Website")
-                        .HasColumnType("int");
+                    b.Property<string>("Website")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Boxs");
+                    b.ToTable("Passwords");
                 });
 
             modelBuilder.Entity("DataLayer.Models.User", b =>
@@ -69,10 +72,10 @@ namespace DataLayer.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DataLayer.Models.Box", b =>
+            modelBuilder.Entity("DataLayer.Models.Password", b =>
                 {
                     b.HasOne("DataLayer.Models.User", "User")
-                        .WithMany("UserBox")
+                        .WithMany("Passwords")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -82,7 +85,7 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Models.User", b =>
                 {
-                    b.Navigation("UserBox");
+                    b.Navigation("Passwords");
                 });
 #pragma warning restore 612, 618
         }
