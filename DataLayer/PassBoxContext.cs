@@ -27,18 +27,7 @@ namespace DataLayer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User
-            {
-                Username = "Lukas",
-                Password = "Test"
-            });
 
-            modelBuilder.Entity<Password>().HasData(new Password
-            {
-                Website = "Test site.com",
-                Username = "bob",
-                Pass = "Test",
-            }); ;
         }
     }
 }

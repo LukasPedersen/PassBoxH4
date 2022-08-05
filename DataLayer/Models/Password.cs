@@ -20,6 +20,9 @@ namespace DataLayer.Models
         [Required]
         public string Pass { get; set; }
 
+        [Required]
+        public string Key { get; set; }
+
 
         //Navigation
         public User User { get; set; }

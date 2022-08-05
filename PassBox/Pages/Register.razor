@@ -1,0 +1,45 @@
+﻿@page "/Register"
+
+@using ServiceLayer;
+@inject IUserService UserManager;
+@inject NavigationManager NavManager;
+@inject ISafeHandler SafeHandlerManager;
+
+<div style="width:300px; margin-left:auto; margin-right:auto;">
+    <h3>Please create an account</h3>
+    <form>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <input @bind-value="Username" type="text" id="form2Example1" class="form-control" />
+            <label class="form-label" for="form2Example1">Username</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <input @bind-value="Password" type="password" id="form2Example2" class="form-control" />
+            <label class="form-label" for="form2Example2">Password</label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="button" @onclick="() => CreateAccount()" class="btn btn-primary btn-block mb-4">Create account</button>
+    </form>
+</div>
+
+
+@code {
+    public string? Username { get; set; }
+    public string? Password { get; set; }
+
+    public void CreateAccount()
+    {
+        string personalSalt = SafeHandlerManager.GenerateSalt();
+        UserManager.CreateUser(
+            Username,
+            SafeHandlerManager.HashPasswordWithSalt(Password, personalSalt),
+            personalSalt
+        );
+
+        NavManager.NavigateTo("/");
+    }
+
+}
