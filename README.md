@@ -23,7 +23,7 @@ Passwords er gemt i database sammen med public key
 
 ## Initial Features
 - [X] User login
-- [X] Encryption/Decryption af passwords
+- [ ] Encryption/Decryption af passwords
 - [X] Password hashing
 
 # Database Diagram
