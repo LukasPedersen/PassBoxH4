@@ -12,10 +12,11 @@ namespace ServiceLayer
         #region Hash
 
         /// <summary>
-        /// 
+        /// Hash the given <paramref name="password"/> with the given <paramref name="salt"/>
         /// </summary>
         /// <param name="password"></param>
-        /// <returns></returns>
+        /// <param name="salt"></param>
+        /// <returns><see cref="string"/> <paramref name="password"/></returns>
         public string HashPasswordWithSalt(string password, string salt)
         {
             //Convert password to byte array in UTF8 format allowing the use of special characters
@@ -32,11 +33,11 @@ namespace ServiceLayer
         }
 
         /// <summary>
-        /// 
+        /// Combine the given <paramref name="first"/> <see cref="byte"/>[] with the given <paramref name="second"/> <see cref="byte"/>[]
         /// </summary>
         /// <param name="first"></param>
         /// <param name="second"></param>
-        /// <returns></returns>
+        /// <returns>Combined <see cref="byte"/>[]</returns>
         public byte[] Combine(byte[] first, byte[] second)
         {
             byte[] ret = new byte[first.Length + second.Length];
@@ -48,9 +49,9 @@ namespace ServiceLayer
         }
 
         /// <summary>
-        /// 
+        /// Generate a random number used as a salt
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="string"/> salt</returns>
         public string GenerateSalt()
         {
             const int saltLength = 32;
@@ -68,7 +69,7 @@ namespace ServiceLayer
         private string iv { get; set; } = "HR$2pIjHR$2pIj12";
 
         /// <summary>
-        /// 
+        /// Create a random key with the given <paramref name="length"/> in the form: <see cref="byte"/>[]
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
@@ -82,12 +83,11 @@ namespace ServiceLayer
         }
 
         /// <summary>
-        /// 
+        /// Encrypt the given <paramref name="dataToEncrypt"/> with the given random <paramref name="key"/>
         /// </summary>
         /// <param name="dataToEncrypt"></param>
         /// <param name="key"></param>
-        /// <param name="iv"></param>
-        /// <returns></returns>
+        /// <returns>Encrypted <see cref="byte"/>[]</returns>
         public byte[] Encrypt(string dataToEncrypt, string key)
         {
             using Aes aes = Aes.Create();
@@ -103,12 +103,11 @@ namespace ServiceLayer
         }
 
         /// <summary>
-        /// 
+        /// Decrypt the given <paramref name="dataToDecrypt"/> with the given <paramref name="key"/>
         /// </summary>
         /// <param name="dataToDecrypt"></param>
         /// <param name="key"></param>
-        /// <param name="iv"></param>
-        /// <returns></returns>
+        /// <returns>Decrypted <see cref="byte"/>[]</returns>
         public byte[] Decrypt(string dataToDecrypt, string key)
         {
             using Aes aes = Aes.Create();
